@@ -22,19 +22,35 @@
                     <button class="btn-primary rounded-buttons mb-2">
                       <strong>Biaya Air Freight Detail</strong>
                     </button>
-                    <table class="table text-center">
+                    <table class="table text-center table-responsive">
                       <thead class="bg-secondary">
                         <tr>
                           <th scope="col">No</th>
-                          <th scope="col">Nomor Dokumen</th>
-            
+                          <th scope="col">Asal</th>
+                          <th scope="col">TLC</th>
+                          <th scope="col">Airline</th>
+                          <th scope="col">ID</th>
+                          <th scope="col">Berat</th>
+                          <th scope="col">Tarif SMU</th>
+                          <th scope="col">PPN</th>
+                          <th scope="col">Handling Fee</th>
+                          <th scope="col">Biaya Admin</th>
+                          <th scope="col">Surchage</th>
                         </tr>
                       </thead>
                       <tbody>
                         <tr v-for="item in detail_air_freight" :key="item.id">
                           <td>1</td>
-                          <td>{{item.NoDokumen}}</td>
-
+                          <td>{{item.CityId}}</td>
+                          <td></td>
+                          <td>{{item.Airline}}</td>
+                          <td></td>
+                          <td>{{item.Berat}}</td>
+                          <td>{{item.TarifSMU}}</td>
+                          <td>{{item.PPN}}</td>
+                          <td>{{item.HandlingFee}}</td>
+                          <td>{{item.BiayaAdmin}}</td>
+                          <td>{{item.Surchage}}</td>
                         </tr>
                       </tbody>
                     </table>
@@ -57,7 +73,7 @@
                         <span class="card-text"><strong>{{show_air_freights.JumlahBaris}}</strong></span><br><br>
                         <span>Diterbitkan Oleh</span><br>
                         <span class="card-text"><strong>{{show_air_freights.Diterbitkan}}</strong></span><br><br>
-                          <Link href="/apps/air-freight/create">
+                        <Link :href="`/apps/air-freight-detail/${show_air_freights.NoDokumen}/create`">
                         <span class="btn btn-danger rounded-buttons mb-2 p-2">
                         <strong><i class="fa fa-plus-circle">‌</i> Tambah</strong>
                         </span>

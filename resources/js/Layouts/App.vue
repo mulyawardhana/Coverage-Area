@@ -14,7 +14,7 @@
       
       <!-- header -->
       <Header />
-      <!-- end header -->
+      <!-- end header --->
 
       <div class="c-body">
 

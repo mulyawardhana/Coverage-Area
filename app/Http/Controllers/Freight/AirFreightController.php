@@ -68,11 +68,46 @@ class AirFreightController extends Controller
         ]);
 
     }
-    public function create()
+    public function createDetailAirFreight($id)
     {
-        return Inertia::render('Apps/Freights/Create');
+        $no_dokumen = AirLandFreight::where('NoDokumen',$id)->first();
+        return Inertia::render('Apps/Freights/Create',[
+            'no_dokumen_air_freight' => $no_dokumen
+        ]);
     }
 
+    public function storeDetailAirFreight(Request $request)
+    {
+    
+        $no_dokumen = $request->no_dokumen;
+        AirLandFreightDetail::create([
+            'NoDokumen'     => $request->no_dokumen,
+            'CityId'        => $request->asal,   
+            'Airline'       => $request->airline,   
+            'VendorId'      => $request->nama_vendor,
+            'Berat'         => $request->berat,
+            'TarifSMU'      => $request->tarif_smu,
+            'PPN'           => $request->ppn,
+            'HandlingFee'   => $request->handling_fee,
+            'BiayaAdmin'    => $request->biaya_admin,
+            'Surchage'      => $request->surchage,
+            'ServiceFee'    => $request->service_fee,
+            'SewaGudang'    => $request->sewa_gudang,
+            'OtherCharge'   => $request->other_charge,
+            'RegulatedAgent'=> $request->regulated_agent,
+            'MSC'           => $request->msc,
+            'BasicStore'    => $request->basic_store,
+            'Total'         => $request->total,
+            'TarifSMUPlus'  => $request->smu_plus,
+            'PPNPlus'       => $request->ppn_plus,
+            'TotalPlus'     => $request->total_plus,
+            'Keterangan'    => $request->keterangan,
+            'TglBuat'       => $request->tanggal_buat,
+            'CreatedBy'     => Auth::user()->id,
+    
+        ]);
+        return redirect()->route('air-freight.detail-new',['NoDokumen' => $no_dokumen]);
+    }
 
     public function store(Request $request)
     {
